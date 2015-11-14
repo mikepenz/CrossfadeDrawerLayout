@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="define_crossfadedrawerlayout">year;owner</string>
+    <string name="library_crossfadedrawerlayout_author">Mike Penz</string>
+    <string name="library_crossfadedrawerlayout_authorWebsite">http://mikepenz.com/</string>
+    <string name="library_crossfadedrawerlayout_libraryName">CrossfadeDrawerLayout</string>
+    <string name="library_crossfadedrawerlayout_libraryDescription">
+        <![CDATA[
+        <b>CrossfadeDrawerLayout</b>
+        ]]>
+    </string>
+    <string name="library_crossfadedrawerlayout_libraryVersion">0.0.2</string>
+    <string name="library_crossfadedrawerlayout_libraryWebsite">https://github.com/mikepenz/CrossfadeDrawerLayout</string>
+    <string name="library_crossfadedrawerlayout_licenseId">apache_2_0</string>
+    <string name="library_crossfadedrawerlayout_isOpenSource">true</string>
+    <string name="library_crossfadedrawerlayout_repositoryLink">https://github.com/mikepenz/CrossfadeDrawerLayout</string>
+    <!-- Custom variables section -->
+    <string name="library_crossfadedrawerlayout_owner">Mike Penz</string>
+    <string name="library_crossfadedrawerlayout_year">2015</string>
+</resources>

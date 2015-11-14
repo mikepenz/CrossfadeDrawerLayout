@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">CrossfadeDrawerLayout</string>
+
+    <!-- Sample menu -->
+    <string name="action_toggle">Toggle Side Panel</string>
+
+    <!-- Drawer Items -->
+    <string name="drawer_item_first">First item</string>
+    <string name="drawer_item_second">Second item</string>
+    <string name="drawer_item_third">Third item</string>
+    <string name="drawer_item_fourth">Fourth item</string>
+    <string name="drawer_item_fifth">Fifth item</string>
+    <string name="drawer_item_sixth">Sixth item</string>
+    <string name="drawer_item_seventh">Seventh item</string>
+    <string name="drawer_item_eighth">Eighth item</string>
+    <string name="drawer_item_ninth">Ninth item</string>
+    <string name="drawer_item_tenth">Tenth item</string>
+    <string name="drawer_item_eleventh">Eleventh item</string>
+    <string name="drawer_item_twelfth">Twelfth item</string>
+</resources>
