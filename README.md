@@ -10,18 +10,11 @@ It comes with following features:
 
 #Include in your project
 ##Using Maven
-The CrossfadeDrawerLayout Library is pushed to [Maven Central](http://search.maven.org/#search|ga|1|g%3A%22com.mikepenz%22), so you just need to add the following dependency to your `build.gradle`.
-
 ```javascript
-compile('com.mikepenz:crossfadedrawerlayout:0.0.1-SNAPSHOT@aar') {
+compile('com.mikepenz:crossfadedrawerlayout:0.0.2@aar') {
 	transitive = true
 }
 ```
-
-This will require the snapshot repository to be added
-```gradle
-maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
-``` 
 
 ##How to use
 
