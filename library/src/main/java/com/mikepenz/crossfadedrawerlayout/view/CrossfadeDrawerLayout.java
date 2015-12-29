@@ -25,6 +25,7 @@ public class CrossfadeDrawerLayout extends DrawerLayout {
     private float mPrevTouch = -1;
 
     private DrawerListener mDrawerListener;
+    private CrossfadeListener mCrossfadeListener;
 
     private int mMinWidth = 0;
     private int mMaxWidth = 0;
@@ -75,6 +76,17 @@ public class CrossfadeDrawerLayout extends DrawerLayout {
 
     public boolean isCrossfaded() {
         return mIsCrossfaded;
+    }
+
+    /**
+     * defines a CrossfadeListener which is called when you slide the crossfader
+     *
+     * @param crossfadeListener
+     * @return
+     */
+    public CrossfadeDrawerLayout withCrossfadeListener(CrossfadeListener crossfadeListener) {
+        this.mCrossfadeListener = crossfadeListener;
+        return this;
     }
 
     @Override
@@ -182,6 +194,7 @@ public class CrossfadeDrawerLayout extends DrawerLayout {
                 } else {
                     fadeDown(DEFAULT_ANIMATION);
                 }
+
                 if (click) {
                     return super.dispatchTouchEvent(motionEvent);
                 } else {
@@ -199,21 +212,20 @@ public class CrossfadeDrawerLayout extends DrawerLayout {
                     mContainer.setLayoutParams(lp);
                     mTouchDown = motionEvent.getX();
                     overlapViews(lp.width);
-                    return true;
                 } else if (diff < 0 && lp.width >= mMinWidth && (lp.width + diff) > mMinWidth) {
                     lp.width = (int) (lp.width + diff);
                     mContainer.setLayoutParams(lp);
                     mTouchDown = motionEvent.getX();
                     overlapViews(lp.width);
-                    return true;
                 } else if (lp.width < mMinWidth) {
                     lp.width = mMinWidth;
                     mContainer.setLayoutParams(lp);
                     mDrawerOpened = false;
                     mTouchDown = -1;
                     overlapViews(mMinWidth);
-                    return true;
                 }
+
+                return true;
             }
         }
         return super.dispatchTouchEvent(motionEvent);
@@ -311,12 +323,22 @@ public class CrossfadeDrawerLayout extends DrawerLayout {
         return percentage;
     }
 
+    //remember the previous width to optimize performance
+    private int mWidth = -1;
+
     /**
      * overlap the views and provide the crossfade effect
      *
      * @param width
      */
     private void overlapViews(int width) {
+        if (width == mWidth) {
+            return;
+        }
+        //remember this width so it is't processed twice
+        mWidth = width;
+
+
         float percentage = calculatePercentage(width);
         float alpha = percentage / 100;
 
@@ -326,5 +348,14 @@ public class CrossfadeDrawerLayout extends DrawerLayout {
         UIUtils.setAlpha(mLargeView, alpha);
         mLargeView.setClickable(true);
         mLargeView.setVisibility(alpha > 0.01f ? View.VISIBLE : View.GONE);
+
+        //notify the crossfadeListener
+        if (mCrossfadeListener != null) {
+            mCrossfadeListener.onCrossfade(mContainer, calculatePercentage(width), width);
+        }
+    }
+
+    public interface CrossfadeListener {
+        void onCrossfade(View containerView, float currentSlidePercentage, int slideOffset);
     }
 }
