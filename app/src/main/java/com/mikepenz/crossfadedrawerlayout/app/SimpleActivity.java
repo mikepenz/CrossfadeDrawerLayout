@@ -47,7 +47,6 @@ public class SimpleActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
         // Create a few sample profile
         // NOTE you have to define the loader logic too. See the CustomApplication for more details
         final IProfile profile = new ProfileDrawerItem().withName("Mike Penz").withEmail("mikepenz@gmail.com").withIcon("https://avatars3.githubusercontent.com/u/1476232?v=3&s=460");
@@ -60,16 +59,6 @@ public class SimpleActivity extends AppCompatActivity {
                 .addProfiles(
                         profile, profile2
                 )
-                .withOnAccountHeaderListener(new AccountHeader.OnAccountHeaderListener() {
-                    @Override
-                    public boolean onProfileChanged(View view, IProfile profile, boolean current) {
-                        //IMPORTANT! notify the MiniDrawer about the profile click
-                        miniResult.onProfileClick();
-
-                        //false if you have not consumed the event and it should close the drawer
-                        return false;
-                    }
-                })
                 .withSavedInstance(savedInstanceState)
                 .build();
 
@@ -82,6 +71,7 @@ public class SimpleActivity extends AppCompatActivity {
                 .withDrawerLayout(crossfadeDrawerLayout)
                 .withHasStableIds(true)
                 .withDrawerWidthDp(72)
+                .withGenerateMiniDrawer(true)
                 .withAccountHeader(headerResult) //set the AccountHeader we created earlier for the header
                 .addDrawerItems(
                         new PrimaryDrawerItem().withName(R.string.drawer_item_first).withIcon(GoogleMaterial.Icon.gmd_3d_rotation).withIdentifier(1),
@@ -100,8 +90,7 @@ public class SimpleActivity extends AppCompatActivity {
                             Toast.makeText(SimpleActivity.this, ((Nameable) drawerItem).getName().getText(SimpleActivity.this), Toast.LENGTH_SHORT).show();
                         }
 
-                        //IMPORTANT notify the MiniDrawer about the onItemClick
-                        return miniResult.onItemClick(drawerItem);
+                        return false;
                     }
                 })
                 .withSavedInstance(savedInstanceState)
@@ -111,8 +100,10 @@ public class SimpleActivity extends AppCompatActivity {
         //define maxDrawerWidth
         crossfadeDrawerLayout.setMaxWidthPx(DrawerUIUtils.getOptimalDrawerWidth(this));
         //add second view (which is the miniDrawer)
-        miniResult = new MiniDrawer().withDrawer(result).withAccountHeader(headerResult);
+        MiniDrawer miniResult = result.getMiniDrawer();
+        //build the view for the MiniDrawer
         View view = miniResult.build(this);
+        //set the background of the MiniDrawer as this would be transparent
         view.setBackgroundColor(UIUtils.getThemeColorFromAttrOrRes(this, com.mikepenz.materialdrawer.R.attr.material_drawer_background, com.mikepenz.materialdrawer.R.color.material_drawer_background));
         //we do not have the MiniDrawer view during CrossfadeDrawerLayout creation so we will add it here
         crossfadeDrawerLayout.getSmallView().addView(view, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
@@ -133,6 +124,14 @@ public class SimpleActivity extends AppCompatActivity {
             @Override
             public boolean isCrossfaded() {
                 return crossfadeDrawerLayout.isCrossfaded();
+            }
+        });
+
+        //hook to the crossfade event
+        crossfadeDrawerLayout.withCrossfadeListener(new CrossfadeDrawerLayout.CrossfadeListener() {
+            @Override
+            public void onCrossfade(View containerView, float currentSlidePercentage, int slideOffset) {
+                //Log.e("CrossfadeDrawerLayout", "crossfade: " + currentSlidePercentage + " - " + slideOffset);
             }
         });
     }
