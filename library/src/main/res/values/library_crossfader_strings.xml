@@ -10,7 +10,7 @@
         <b>CrossfadeDrawerLayout</b>
         ]]>
     </string>
-    <string name="library_crossfadedrawerlayout_libraryVersion">0.0.2</string>
+    <string name="library_crossfadedrawerlayout_libraryVersion">0.1.0</string>
     <string name="library_crossfadedrawerlayout_libraryWebsite">https://github.com/mikepenz/CrossfadeDrawerLayout</string>
     <string name="library_crossfadedrawerlayout_licenseId">apache_2_0</string>
     <string name="library_crossfadedrawerlayout_isOpenSource">true</string>
