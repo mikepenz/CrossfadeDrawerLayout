@@ -12,7 +12,7 @@
   <body>
     <section class="page-header">
       <h1 class="project-name">Crossfadedrawerlayout</h1>
-      <h2 class="project-tagline"></h2>
+      <h2 class="project-tagline">Add a 2-Step DrawerLayout to your application, with a nice crossfade effect </h2>
       <a href="https://github.com/mikepenz/CrossfadeDrawerLayout" class="btn">View on GitHub</a>
       <a href="https://github.com/mikepenz/CrossfadeDrawerLayout/zipball/master" class="btn">Download .zip</a>
       <a href="https://github.com/mikepenz/CrossfadeDrawerLayout/tarball/master" class="btn">Download .tar.gz</a>
@@ -20,12 +20,16 @@
 
     <section class="main-content">
       <h1>
-<a id="crossfadedrawerlayout--" class="anchor" href="#crossfadedrawerlayout--" aria-hidden="true"><span class="octicon octicon-link"></span></a>CrossfadeDrawerLayout  <a href="https://maven-badges.herokuapp.com/maven-central/com.mikepenz/crossfadedrawerlayout"><img src="https://maven-badges.herokuapp.com/maven-central/com.mikepenz/crossfadedrawerlayout/badge.svg?style=flat" alt="Maven Central"></a>
+<a id="crossfadedrawerlayout---" class="anchor" href="#crossfadedrawerlayout---" aria-hidden="true"><span class="octicon octicon-link"></span></a>CrossfadeDrawerLayout  <a href="https://maven-badges.herokuapp.com/maven-central/com.mikepenz/crossfadedrawerlayout"><img src="https://maven-badges.herokuapp.com/maven-central/com.mikepenz/crossfadedrawerlayout/badge.svg?style=flat" alt="Maven Central"></a> <a href="https://gitter.im/mikepenz/crossfadedrawerlayout?utm_source=badge&amp;utm_medium=badge&amp;utm_campaign=pr-badge&amp;utm_content=badge"><img src="https://badges.gitter.im/Join%20Chat.svg" alt="Join the chat at https://gitter.im/mikepenz/crossfadedrawerlayout"></a>
 </h1>
 
-<p><a href="https://gitter.im/mikepenz/crossfadedrawerlayout?utm_source=badge&amp;utm_medium=badge&amp;utm_campaign=pr-badge&amp;utm_content=badge"><img src="https://badges.gitter.im/Join%20Chat.svg" alt="Join the chat at https://gitter.im/mikepenz/crossfadedrawerlayout"></a></p>
+<blockquote>
+<p>Many modern applications come with a <code>Drawer</code>, which is a great pattern to implement one level of navigation to your app, but this only comes with one level, and after opening it will take the whole view.</p>
+</blockquote>
 
-<p>It comes with following features:</p>
+<p>The CrossfadeDrawerLayout is here to solve this. It alllows to implement a 2 step navigation. By default it does not show up, after the user swipes, or clicks the <code>NavigationIcon</code> it will show the quick navigation, which
+only consists out of a profile (if given), icons and badges. Users can quickly choose what they want, without interacting with any additional information. If the user wants to switch his profile, or want have access to additional
+functions, he can drag in the <code>MiniDrawer</code> and resize it to a normal <code>Drawer</code>. </p>
 
 <h1>
 <a id="preview" class="anchor" href="#preview" aria-hidden="true"><span class="octicon octicon-link"></span></a>Preview</h1>
@@ -41,25 +45,94 @@
 <h2>
 <a id="using-maven" class="anchor" href="#using-maven" aria-hidden="true"><span class="octicon octicon-link"></span></a>Using Maven</h2>
 
-<div class="highlight highlight-source-js"><pre><span class="pl-en">compile</span>(<span class="pl-s"><span class="pl-pds">'</span>com.mikepenz:crossfadedrawerlayout:0.0.2@aar<span class="pl-pds">'</span></span>) {
+<div class="highlight highlight-source-js"><pre><span class="pl-en">compile</span>(<span class="pl-s"><span class="pl-pds">'</span>com.mikepenz:crossfadedrawerlayout:0.1.0@aar<span class="pl-pds">'</span></span>) {
     transitive <span class="pl-k">=</span> <span class="pl-c1">true</span>
 }</pre></div>
 
 <h2>
 <a id="how-to-use" class="anchor" href="#how-to-use" aria-hidden="true"><span class="octicon octicon-link"></span></a>How to use</h2>
 
+<h3>
+<a id="with-the-materialdrawer" class="anchor" href="#with-the-materialdrawer" aria-hidden="true"><span class="octicon octicon-link"></span></a>With the MaterialDrawer</h3>
+
+<p><a href="https://github.com/mikepenz/MaterialDrawer">MaterialDrawer</a></p>
+
+<div class="highlight highlight-source-java"><pre>crossfadeDrawerLayout <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-smi">CrossfadeDrawerLayout</span>(<span class="pl-v">this</span>);
+
+<span class="pl-c">//Create the drawer</span>
+result <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-smi">DrawerBuilder</span>()
+        .withActivity(<span class="pl-v">this</span>)
+        .withToolbar(toolbar)
+<span class="pl-c">//provide the custom crossfadeDrawerLaoyout</span>
+        .withDrawerLayout(crossfadeDrawerLayout)
+        .withHasStableIds(<span class="pl-c1">true</span>)
+<span class="pl-c">//define the width to the width of our smaller view</span>
+        .withDrawerWidthDp(<span class="pl-c1">72</span>)
+<span class="pl-c">//generate the MiniDrawer which is used for the smaller view</span>
+        .withGenerateMiniDrawer(<span class="pl-c1">true</span>)
+<span class="pl-c">//add some items, those are alo automatically added to the MiniDrawer</span>
+        .addDrawerItems(
+                <span class="pl-c1">...</span>
+        )
+<span class="pl-c">//the listener which is called when an item inside the drawer or miniDrawer is clicked</span>
+        .withOnDrawerItemClickListener(<span class="pl-k">new</span> <span class="pl-smi">Drawer</span>.<span class="pl-smi">OnDrawerItemClickListener</span>() {
+            <span class="pl-k">@Override</span>
+            <span class="pl-k">public</span> <span class="pl-k">boolean</span> <span class="pl-en">onItemClick</span>(<span class="pl-smi">View</span> <span class="pl-v">view</span>, <span class="pl-k">int</span> <span class="pl-v">position</span>, <span class="pl-smi">IDrawerItem</span> <span class="pl-v">drawerItem</span>) {
+                <span class="pl-k">return</span> <span class="pl-c1">false</span>;
+            }
+        })
+        .withSavedInstance(savedInstanceState)
+        .build();
+
+<span class="pl-c">//define maxDrawerWidth (this is the width in the complete opened state)</span>
+crossfadeDrawerLayout<span class="pl-k">.</span>setMaxWidthPx(<span class="pl-smi">DrawerUIUtils</span><span class="pl-k">.</span>getOptimalDrawerWidth(<span class="pl-v">this</span>));
+
+<span class="pl-c">//add second view (which is the miniDrawer)</span>
+<span class="pl-smi">MiniDrawer</span> miniResult <span class="pl-k">=</span> result<span class="pl-k">.</span>getMiniDrawer();
+<span class="pl-c">//build the view for the MiniDrawer</span>
+<span class="pl-smi">View</span> view <span class="pl-k">=</span> miniResult<span class="pl-k">.</span>build(<span class="pl-v">this</span>);
+<span class="pl-c">//set the background of the MiniDrawer as this would be transparent</span>
+view<span class="pl-k">.</span>setBackgroundColor(<span class="pl-smi">UIUtils</span><span class="pl-k">.</span>getThemeColorFromAttrOrRes(<span class="pl-v">this</span>, <span class="pl-smi">com.mikepenz.materialdrawer<span class="pl-k">.</span>R</span><span class="pl-k">.</span>attr<span class="pl-k">.</span>material_drawer_background, <span class="pl-smi">com.mikepenz.materialdrawer<span class="pl-k">.</span>R</span><span class="pl-k">.</span>color<span class="pl-k">.</span>material_drawer_background));
+<span class="pl-c">//we do not have the MiniDrawer view during CrossfadeDrawerLayout creation so we will add it here</span>
+crossfadeDrawerLayout<span class="pl-k">.</span>getSmallView()<span class="pl-k">.</span>addView(view, <span class="pl-smi">ViewGroup</span><span class="pl-k">.</span><span class="pl-smi">LayoutParams</span><span class="pl-c1"><span class="pl-k">.</span>MATCH_PARENT</span>, <span class="pl-smi">ViewGroup</span><span class="pl-k">.</span><span class="pl-smi">LayoutParams</span><span class="pl-c1"><span class="pl-k">.</span>MATCH_PARENT</span>);
+
+<span class="pl-c">//define the crossfader to be used with the miniDrawer. This is required to be able to automatically toggle open / close</span>
+miniResult<span class="pl-k">.</span>withCrossFader(<span class="pl-k">new</span> <span class="pl-smi">ICrossfader</span>() {
+    <span class="pl-k">@Override</span>
+    <span class="pl-k">public</span> <span class="pl-k">void</span> <span class="pl-en">crossfade</span>() {
+        crossfadeDrawerLayout<span class="pl-k">.</span>crossfade(<span class="pl-c1">400</span>);
+        <span class="pl-c">//only close the drawer if we were already faded and want to close it now</span>
+        <span class="pl-k">if</span> (isCrossfaded()) {
+            result<span class="pl-k">.</span>getDrawerLayout()<span class="pl-k">.</span>closeDrawer(<span class="pl-smi">GravityCompat</span><span class="pl-c1"><span class="pl-k">.</span>START</span>);
+        }
+    }
+
+    <span class="pl-k">@Override</span>
+    <span class="pl-k">public</span> <span class="pl-k">boolean</span> <span class="pl-en">isCrossfaded</span>() {
+        <span class="pl-k">return</span> crossfadeDrawerLayout<span class="pl-k">.</span>isCrossfaded();
+    }
+});
+</pre></div>
+
 <h1>
 <a id="developed-by" class="anchor" href="#developed-by" aria-hidden="true"><span class="octicon octicon-link"></span></a>Developed By</h1>
 
 <ul>
-<li>Mike Penz - <a href="http://mikepenz.com">http://mikepenz.com</a> - <a href="mailto:mikepenz@gmail.com">mikepenz@gmail.com</a>
+<li>Mike Penz 
+
+<ul>
+<li>
+<a href="http://mikepenz.com">mikepenz.com</a> - <a href="mailto:mikepenz@gmail.com">mikepenz@gmail.com</a>
+</li>
+<li><a href="http://paypal.me/mikepenz">paypal.me/mikepenz</a></li>
+</ul>
 </li>
 </ul>
 
 <h1>
 <a id="license" class="anchor" href="#license" aria-hidden="true"><span class="octicon octicon-link"></span></a>License</h1>
 
-<pre><code>Copyright 2015 Mike Penz
+<pre><code>Copyright 2016 Mike Penz
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
