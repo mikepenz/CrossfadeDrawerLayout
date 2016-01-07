@@ -13,8 +13,8 @@ android {
         applicationId "com.mikepenz.crossfadedrawerlayout.app"
         minSdkVersion 10
         targetSdkVersion 23
-        versionCode 10
-        versionName '0.1.0'
+        versionCode 20
+        versionName '0.2.0'
 
         applicationVariants.all { variant ->
             variant.outputs.each { output ->
@@ -51,14 +51,23 @@ android {
 dependencies {
     compile project(':library')
 
-    compile('com.mikepenz:materialdrawer:4.6.2@aar') {
+    // used to provide the fast, flexible, and easy to use DrawerLayout which follows the Material Design Guidelines
+    // https://github.com/mikepenz/MaterialDrawer
+    compile('com.mikepenz:materialdrawer:5.0.0.fastAdapter-SNAPSHOT@aar') {
         transitive = true
     }
+
+    // used to generate the Open Source section
+    // https://github.com/mikepenz/AboutLibraries
     compile('com.mikepenz:aboutlibraries:5.3.4@aar') {
         transitive = true
     }
-    compile 'com.mikepenz:google-material-typeface:2.2.0.1@aar'
+
+    // icon fonts used inside the sample
+    // https://github.com/mikepenz/Android-Iconics
+    compile 'com.mikepenz:material-design-iconic-typeface:2.2.0.1@aar'
     compile 'com.mikepenz:fontawesome-typeface:4.4.0.1@aar'
 
+    // used to showcase how to load images
     compile 'com.squareup.picasso:picasso:2.5.2'
 }
