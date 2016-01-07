@@ -11,7 +11,7 @@ import android.widget.Toast;
 
 import com.mikepenz.crossfadedrawerlayout.view.CrossfadeDrawerLayout;
 import com.mikepenz.fontawesome_typeface_library.FontAwesome;
-import com.mikepenz.google_material_typeface_library.GoogleMaterial;
+import com.mikepenz.material_design_iconic_typeface_library.MaterialDesignIconic;
 import com.mikepenz.materialdrawer.AccountHeader;
 import com.mikepenz.materialdrawer.AccountHeaderBuilder;
 import com.mikepenz.materialdrawer.Drawer;
@@ -74,12 +74,12 @@ public class SimpleActivity extends AppCompatActivity {
                 .withGenerateMiniDrawer(true)
                 .withAccountHeader(headerResult) //set the AccountHeader we created earlier for the header
                 .addDrawerItems(
-                        new PrimaryDrawerItem().withName(R.string.drawer_item_first).withIcon(GoogleMaterial.Icon.gmd_3d_rotation).withIdentifier(1),
+                        new PrimaryDrawerItem().withName(R.string.drawer_item_first).withIcon(MaterialDesignIconic.Icon.gmi_3d_rotation).withIdentifier(1),
                         new PrimaryDrawerItem().withName(R.string.drawer_item_second).withIcon(FontAwesome.Icon.faw_home).withIdentifier(2),
                         new PrimaryDrawerItem().withName(R.string.drawer_item_third).withIcon(FontAwesome.Icon.faw_gamepad).withIdentifier(3),
                         new PrimaryDrawerItem().withName(R.string.drawer_item_fourth).withIcon(FontAwesome.Icon.faw_eye).withIdentifier(4),
-                        new PrimaryDrawerItem().withName(R.string.drawer_item_fifth).withDescription("A more complex sample").withIcon(GoogleMaterial.Icon.gmd_adb).withIdentifier(5),
-                        new PrimaryDrawerItem().withName(R.string.drawer_item_sixth).withIcon(GoogleMaterial.Icon.gmd_car).withIdentifier(6),
+                        new PrimaryDrawerItem().withName(R.string.drawer_item_fifth).withDescription("A more complex sample").withIcon(MaterialDesignIconic.Icon.gmi_adb).withIdentifier(5),
+                        new PrimaryDrawerItem().withName(R.string.drawer_item_sixth).withIcon(MaterialDesignIconic.Icon.gmi_car).withIdentifier(6),
                         new DividerDrawerItem(),
                         new SecondaryDrawerItem().withName(R.string.drawer_item_seventh).withIcon(FontAwesome.Icon.faw_github)
                 ) // add the items we want to use with our Drawer
