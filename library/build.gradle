@@ -29,4 +29,10 @@ apply from: 'gradle-jcenter-push.gradle'
 
 dependencies {
     compile "com.android.support:appcompat-v7:${rootProject.ext.supportLibVersion}"
+
+    // used because it comes with a ScrimInsetsRelativeLayout we need here
+    // contains util classes to support various android versions, and clean up code
+    // comes with the awesome "Holder"-Pattern
+    // https://github.com/mikepenz/Materialize
+    compile 'com.mikepenz:materialize:0.5.3.2-SNAPSHOT@aar'
 }
