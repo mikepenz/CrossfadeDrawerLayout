@@ -8,10 +8,10 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 
 import com.mikepenz.crossfadedrawerlayout.ApplyTransformationListener;
 import com.mikepenz.crossfadedrawerlayout.animation.ResizeWidthAnimation;
+import com.mikepenz.materialize.view.ScrimInsetsRelativeLayout;
 
 /**
  * Created by mikepenz on 20.10.15.
@@ -30,7 +30,7 @@ public class CrossfadeDrawerLayout extends DrawerLayout {
     private int mMinWidth = 0;
     private int mMaxWidth = 0;
 
-    private RelativeLayout mContainer;
+    private ScrimInsetsRelativeLayout mContainer;
     private ViewGroup mSmallView;
     private ViewGroup mLargeView;
 
@@ -74,6 +74,10 @@ public class CrossfadeDrawerLayout extends DrawerLayout {
         return mLargeView;
     }
 
+    public ScrimInsetsRelativeLayout getContainer() {
+        return mContainer;
+    }
+
     public boolean isCrossfaded() {
         return mIsCrossfaded;
     }
@@ -112,7 +116,7 @@ public class CrossfadeDrawerLayout extends DrawerLayout {
         //TODO !!
         if (index == 1 && child.getId() != -1) {
             mLargeView = (ViewGroup) child;
-            mContainer = new RelativeLayout(getContext());
+            mContainer = new ScrimInsetsRelativeLayout(getContext());
             mContainer.setGravity(Gravity.START);
             mContainer.setLayoutParams(child.getLayoutParams());
 
