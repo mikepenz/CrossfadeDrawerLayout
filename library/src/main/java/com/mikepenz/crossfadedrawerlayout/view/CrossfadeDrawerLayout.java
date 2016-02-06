@@ -1,6 +1,7 @@
 package com.mikepenz.crossfadedrawerlayout.view;
 
 import android.content.Context;
+import android.os.Build;
 import android.support.v4.widget.DrawerLayout;
 import android.util.AttributeSet;
 import android.view.Gravity;
@@ -11,6 +12,7 @@ import android.widget.LinearLayout;
 
 import com.mikepenz.crossfadedrawerlayout.ApplyTransformationListener;
 import com.mikepenz.crossfadedrawerlayout.animation.ResizeWidthAnimation;
+import com.mikepenz.materialize.util.UIUtils;
 import com.mikepenz.materialize.view.ScrimInsetsRelativeLayout;
 
 /**
@@ -127,6 +129,12 @@ public class CrossfadeDrawerLayout extends DrawerLayout {
 
             UIUtils.setAlpha(mLargeView, 0);
             mLargeView.setVisibility(View.GONE);
+
+            //correct fitsSystemWindows handling
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
+                mContainer.setFitsSystemWindows(true);
+                mSmallView.setFitsSystemWindows(true);
+            }
 
             return mContainer;
         }
