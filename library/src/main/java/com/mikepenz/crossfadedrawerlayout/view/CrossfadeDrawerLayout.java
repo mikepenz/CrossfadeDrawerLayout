@@ -1,6 +1,7 @@
 package com.mikepenz.crossfadedrawerlayout.view;
 
 import android.content.Context;
+import android.os.Build;
 import android.support.v4.widget.DrawerLayout;
 import android.util.AttributeSet;
 import android.view.Gravity;
@@ -11,6 +12,7 @@ import android.widget.LinearLayout;
 
 import com.mikepenz.crossfadedrawerlayout.ApplyTransformationListener;
 import com.mikepenz.crossfadedrawerlayout.animation.ResizeWidthAnimation;
+import com.mikepenz.materialize.util.UIUtils;
 import com.mikepenz.materialize.view.ScrimInsetsRelativeLayout;
 
 /**
@@ -128,6 +130,12 @@ public class CrossfadeDrawerLayout extends DrawerLayout {
             UIUtils.setAlpha(mLargeView, 0);
             mLargeView.setVisibility(View.GONE);
 
+            //correct fitsSystemWindows handling
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
+                mContainer.setFitsSystemWindows(true);
+                mSmallView.setFitsSystemWindows(true);
+            }
+
             return mContainer;
         }
         return child;
@@ -210,7 +218,7 @@ public class CrossfadeDrawerLayout extends DrawerLayout {
                 float diff = motionEvent.getX() - mTouchDown;
                 if (diff == 0) {
                     //no difference nothing to do
-                    return super.dispatchTouchEvent(motionEvent);
+                    //return super.dispatchTouchEvent(motionEvent);
                 } else if (diff > 0 && lp.width <= mMaxWidth && (lp.width + diff) < mMaxWidth && lp.width >= mMinWidth) {
                     lp.width = (int) (lp.width + diff);
                     mContainer.setLayoutParams(lp);
@@ -228,10 +236,10 @@ public class CrossfadeDrawerLayout extends DrawerLayout {
                     mTouchDown = -1;
                     overlapViews(mMinWidth);
                 } else if ((lp.width + diff) < mMinWidth) {
-                    return super.dispatchTouchEvent(motionEvent);
+                    //return super.dispatchTouchEvent(motionEvent);
                 }
 
-                return true;
+                //return true;
             }
         }
         return super.dispatchTouchEvent(motionEvent);
