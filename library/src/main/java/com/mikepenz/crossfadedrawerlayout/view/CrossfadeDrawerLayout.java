@@ -210,7 +210,7 @@ public class CrossfadeDrawerLayout extends DrawerLayout {
                 float diff = motionEvent.getX() - mTouchDown;
                 if (diff == 0) {
                     //no difference nothing to do
-                    return super.dispatchTouchEvent(motionEvent);
+                    //return super.dispatchTouchEvent(motionEvent);
                 } else if (diff > 0 && lp.width <= mMaxWidth && (lp.width + diff) < mMaxWidth && lp.width >= mMinWidth) {
                     lp.width = (int) (lp.width + diff);
                     mContainer.setLayoutParams(lp);
@@ -228,10 +228,10 @@ public class CrossfadeDrawerLayout extends DrawerLayout {
                     mTouchDown = -1;
                     overlapViews(mMinWidth);
                 } else if ((lp.width + diff) < mMinWidth) {
-                    return super.dispatchTouchEvent(motionEvent);
+                    //return super.dispatchTouchEvent(motionEvent);
                 }
 
-                return true;
+                //return true;
             }
         }
         return super.dispatchTouchEvent(motionEvent);
