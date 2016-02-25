@@ -10,11 +10,10 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
-        applicationId "com.mikepenz.crossfadedrawerlayout.app"
         minSdkVersion 10
         targetSdkVersion 23
-        versionCode 30
-        versionName '0.3.0'
+        versionCode 31
+        versionName '0.3.1'
 
         applicationVariants.all { variant ->
             variant.outputs.each { output ->
