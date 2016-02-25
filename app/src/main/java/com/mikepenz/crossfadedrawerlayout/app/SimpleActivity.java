@@ -9,6 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.mikepenz.aboutlibraries.Libs;
+import com.mikepenz.aboutlibraries.LibsBuilder;
 import com.mikepenz.crossfadedrawerlayout.view.CrossfadeDrawerLayout;
 import com.mikepenz.fontawesome_typeface_library.FontAwesome;
 import com.mikepenz.material_design_iconic_typeface_library.MaterialDesignIconic;
@@ -81,23 +83,20 @@ public class SimpleActivity extends AppCompatActivity {
                         new PrimaryDrawerItem().withName(R.string.drawer_item_fifth).withDescription("A more complex sample").withIcon(MaterialDesignIconic.Icon.gmi_adb).withIdentifier(5),
                         new PrimaryDrawerItem().withName(R.string.drawer_item_sixth).withIcon(MaterialDesignIconic.Icon.gmi_car).withIdentifier(6),
                         new DividerDrawerItem(),
-                        new SecondaryDrawerItem().withName(R.string.drawer_item_seventh).withIcon(FontAwesome.Icon.faw_github),
-                        new SecondaryDrawerItem().withName(R.string.drawer_item_seventh).withIcon(FontAwesome.Icon.faw_github),
-                        new SecondaryDrawerItem().withName(R.string.drawer_item_seventh).withIcon(FontAwesome.Icon.faw_github),
-                        new SecondaryDrawerItem().withName(R.string.drawer_item_seventh).withIcon(FontAwesome.Icon.faw_github),
-                        new SecondaryDrawerItem().withName(R.string.drawer_item_seventh).withIcon(FontAwesome.Icon.faw_github),
-                        new SecondaryDrawerItem().withName(R.string.drawer_item_seventh).withIcon(FontAwesome.Icon.faw_github),
-                        new SecondaryDrawerItem().withName(R.string.drawer_item_seventh).withIcon(FontAwesome.Icon.faw_github),
-                        new SecondaryDrawerItem().withName(R.string.drawer_item_seventh).withIcon(FontAwesome.Icon.faw_github),
-                        new SecondaryDrawerItem().withName(R.string.drawer_item_seventh).withIcon(FontAwesome.Icon.faw_github),
-                        new SecondaryDrawerItem().withName(R.string.drawer_item_seventh).withIcon(FontAwesome.Icon.faw_github),
-                        new SecondaryDrawerItem().withName(R.string.drawer_item_seventh).withIcon(FontAwesome.Icon.faw_github)
+                        new SecondaryDrawerItem().withName(R.string.drawer_item_seventh).withIcon(FontAwesome.Icon.faw_github).withIdentifier(7).withSelectable(false)
                 ) // add the items we want to use with our Drawer
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                     @Override
                     public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
-                        if (drawerItem instanceof Nameable) {
-                            Toast.makeText(SimpleActivity.this, ((Nameable) drawerItem).getName().getText(SimpleActivity.this), Toast.LENGTH_SHORT).show();
+                        if (drawerItem.getIdentifier() == 7) {
+                            new LibsBuilder()
+                                    .withFields(R.string.class.getFields())
+                                    .withActivityStyle(Libs.ActivityStyle.DARK)
+                                    .start(SimpleActivity.this);
+                        } else {
+                            if (drawerItem instanceof Nameable) {
+                                Toast.makeText(SimpleActivity.this, ((Nameable) drawerItem).getName().getText(SimpleActivity.this), Toast.LENGTH_SHORT).show();
+                            }
                         }
 
                         return false;

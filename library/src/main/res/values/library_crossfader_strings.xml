@@ -10,7 +10,7 @@
         <b>CrossfadeDrawerLayout</b>. Add a 2-Step DrawerLayout to your application, with a nice crossfade effect.
         ]]>
     </string>
-    <string name="library_crossfadedrawerlayout_libraryVersion">0.3.0</string>
+    <string name="library_crossfadedrawerlayout_libraryVersion">0.3.1</string>
     <string name="library_crossfadedrawerlayout_libraryWebsite">https://github.com/mikepenz/CrossfadeDrawerLayout</string>
     <string name="library_crossfadedrawerlayout_licenseId">apache_2_0</string>
     <string name="library_crossfadedrawerlayout_isOpenSource">true</string>
