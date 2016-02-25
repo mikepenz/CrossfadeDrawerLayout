@@ -34,5 +34,5 @@ dependencies {
     // contains util classes to support various android versions, and clean up code
     // comes with the awesome "Holder"-Pattern
     // https://github.com/mikepenz/Materialize
-    compile 'com.mikepenz:materialize:0.8.1@aar'
+    compile 'com.mikepenz:materialize:0.8.5@aar'
 }
