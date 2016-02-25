@@ -53,13 +53,13 @@ dependencies {
 
     // used to provide the fast, flexible, and easy to use DrawerLayout which follows the Material Design Guidelines
     // https://github.com/mikepenz/MaterialDrawer
-    compile('com.mikepenz:materialdrawer:5.0.0.b24-SNAPSHOT@aar') {
+    compile('com.mikepenz:materialdrawer:5.0.6-SNAPSHOT@aar') {
         transitive = true
     }
 
     // used to generate the Open Source section
     // https://github.com/mikepenz/AboutLibraries
-    compile('com.mikepenz:aboutlibraries:5.5.0@aar') {
+    compile('com.mikepenz:aboutlibraries:5.5.7@aar') {
         transitive = true
         exclude module: "fastadapter"
     }
