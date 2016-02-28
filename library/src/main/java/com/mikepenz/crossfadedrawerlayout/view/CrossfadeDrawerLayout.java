@@ -2,6 +2,7 @@ package com.mikepenz.crossfadedrawerlayout.view;
 
 import android.content.Context;
 import android.os.Build;
+import android.support.v4.view.ViewCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.util.AttributeSet;
 import android.view.Gravity;
@@ -37,6 +38,8 @@ public class CrossfadeDrawerLayout extends DrawerLayout {
     private ViewGroup mLargeView;
 
     private boolean mIsCrossfaded = false;
+
+    private boolean mSliderOnRight = false;
 
     public CrossfadeDrawerLayout(Context context) {
         super(context);
@@ -82,6 +85,11 @@ public class CrossfadeDrawerLayout extends DrawerLayout {
 
     public boolean isCrossfaded() {
         return mIsCrossfaded;
+    }
+
+    public CrossfadeDrawerLayout withSliderOnRight(boolean mSliderOnRight) {
+        this.mSliderOnRight = mSliderOnRight;
+        return this;
     }
 
     /**
@@ -216,6 +224,11 @@ public class CrossfadeDrawerLayout extends DrawerLayout {
                 MarginLayoutParams lp = (MarginLayoutParams) mContainer.getLayoutParams();
                 //the current drawer width
                 float diff = motionEvent.getX() - mTouchDown;
+
+                if (ViewCompat.getLayoutDirection(this) == ViewCompat.LAYOUT_DIRECTION_RTL || mSliderOnRight) {
+                    diff = diff * (-1);
+                }
+
                 if (diff == 0) {
                     //no difference nothing to do
                     //return super.dispatchTouchEvent(motionEvent);
