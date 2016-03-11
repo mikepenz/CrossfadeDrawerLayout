@@ -27,7 +27,6 @@ public class CrossfadeDrawerLayout extends DrawerLayout {
     private float mTouchDown = -1;
     private float mPrevTouch = -1;
 
-    private DrawerListener mDrawerListener;
     private CrossfadeListener mCrossfadeListener;
 
     private int mMinWidth = 0;
@@ -57,7 +56,7 @@ public class CrossfadeDrawerLayout extends DrawerLayout {
     }
 
     public void init(Context ctx) {
-        super.setDrawerListener(drawerListener);
+        super.addDrawerListener(drawerListener);
         //define default valuse for min and max
         mMinWidth = (int) UIUtils.convertDpToPixel(72, ctx);
         mMaxWidth = (int) UIUtils.convertDpToPixel(200, ctx);
@@ -149,26 +148,15 @@ public class CrossfadeDrawerLayout extends DrawerLayout {
         return child;
     }
 
-    @Override
-    public void setDrawerListener(DrawerListener listener) {
-        this.mDrawerListener = listener;
-    }
-
     public DrawerListener drawerListener = new DrawerListener() {
         @Override
         public void onDrawerSlide(View drawerView, float slideOffset) {
             mDrawerOpened = slideOffset == 1;
-
-            if (mDrawerListener != null) {
-                mDrawerListener.onDrawerSlide(drawerView, slideOffset);
-            }
         }
 
         @Override
         public void onDrawerOpened(View drawerView) {
-            if (mDrawerListener != null) {
-                mDrawerListener.onDrawerOpened(drawerView);
-            }
+            mDrawerOpened = true;
         }
 
         @Override
@@ -181,17 +169,10 @@ public class CrossfadeDrawerLayout extends DrawerLayout {
             UIUtils.setAlpha(mSmallView, 1);
             mSmallView.bringToFront();
             UIUtils.setAlpha(mLargeView, 0);
-
-            if (mDrawerListener != null) {
-                mDrawerListener.onDrawerClosed(drawerView);
-            }
         }
 
         @Override
         public void onDrawerStateChanged(int newState) {
-            if (mDrawerListener != null) {
-                mDrawerListener.onDrawerStateChanged(newState);
-            }
         }
     };
 
