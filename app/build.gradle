@@ -52,7 +52,7 @@ dependencies {
 
     // used to provide the fast, flexible, and easy to use DrawerLayout which follows the Material Design Guidelines
     // https://github.com/mikepenz/MaterialDrawer
-    compile('com.mikepenz:materialdrawer:5.0.6-SNAPSHOT@aar') {
+    compile('com.mikepenz:materialdrawer:5.1.2@aar') {
         transitive = true
     }
 
