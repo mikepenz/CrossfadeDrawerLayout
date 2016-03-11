@@ -232,7 +232,6 @@ public class CrossfadeDrawerLayout extends DrawerLayout {
                 } else if ((lp.width + diff) < mMinWidth) {
                     //return super.dispatchTouchEvent(motionEvent);
                 }
-
                 //return true;
             }
         }
@@ -259,6 +258,18 @@ public class CrossfadeDrawerLayout extends DrawerLayout {
         return false;
     }
 
+
+    @Override
+    public void openDrawer(int gravity) {
+        mDrawerOpened = true;
+        super.openDrawer(gravity);
+    }
+
+    @Override
+    public void openDrawer(View drawerView) {
+        mDrawerOpened = true;
+        super.openDrawer(drawerView);
+    }
 
     /**
      * crossfade the small to the large view (with default animation time)
