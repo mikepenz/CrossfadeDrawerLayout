@@ -7,7 +7,7 @@ android {
 
     defaultConfig {
         minSdkVersion 10
-        targetSdkVersion 23
+        targetSdkVersion 24
         versionCode 34
         versionName '0.3.4'
     }
@@ -34,5 +34,5 @@ dependencies {
     // contains util classes to support various android versions, and clean up code
     // comes with the awesome "Holder"-Pattern
     // https://github.com/mikepenz/Materialize
-    compile 'com.mikepenz:materialize:0.8.8@aar'
+    compile 'com.mikepenz:materialize:0.9.0@aar'
 }
