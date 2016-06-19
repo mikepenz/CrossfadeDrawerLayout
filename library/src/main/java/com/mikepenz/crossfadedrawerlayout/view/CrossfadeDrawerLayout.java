@@ -169,6 +169,7 @@ public class CrossfadeDrawerLayout extends DrawerLayout {
             UIUtils.setAlpha(mSmallView, 1);
             mSmallView.bringToFront();
             UIUtils.setAlpha(mLargeView, 0);
+            mDrawerOpened = false;
         }
 
         @Override
