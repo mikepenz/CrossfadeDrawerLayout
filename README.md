@@ -13,7 +13,7 @@ functions, he can drag in the `MiniDrawer` and resize it to a normal `Drawer`.
 #Include in your project
 ##Using Maven
 ```javascript
-compile "com.mikepenz:crossfadedrawerlayout:0.3.4@aar"
+compile "com.mikepenz:crossfadedrawerlayout:1.0.0@aar"
 compile "com.android.support:appcompat-v7:${supportLibVersion}"
 ```
 
