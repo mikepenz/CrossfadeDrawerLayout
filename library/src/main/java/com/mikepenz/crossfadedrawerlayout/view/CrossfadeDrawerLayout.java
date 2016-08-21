@@ -1,7 +1,6 @@
 package com.mikepenz.crossfadedrawerlayout.view;
 
 import android.content.Context;
-import android.os.Build;
 import android.support.v4.view.ViewCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.util.AttributeSet;
@@ -134,14 +133,12 @@ public class CrossfadeDrawerLayout extends DrawerLayout {
             mSmallView = new LinearLayout(getContext());
             mContainer.addView(mSmallView, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
 
-            UIUtils.setAlpha(mLargeView, 0);
+            mLargeView.setAlpha(0);
             mLargeView.setVisibility(View.GONE);
 
             //correct fitsSystemWindows handling
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
-                mContainer.setFitsSystemWindows(true);
-                mSmallView.setFitsSystemWindows(true);
-            }
+            mContainer.setFitsSystemWindows(true);
+            mSmallView.setFitsSystemWindows(true);
 
             return mContainer;
         }
@@ -166,9 +163,9 @@ public class CrossfadeDrawerLayout extends DrawerLayout {
             drawerView.setLayoutParams(lp);
 
             //revert alpha :D
-            UIUtils.setAlpha(mSmallView, 1);
+            mSmallView.setAlpha(1);
             mSmallView.bringToFront();
-            UIUtils.setAlpha(mLargeView, 0);
+            mLargeView.setAlpha(0);
             mDrawerOpened = false;
         }
 
@@ -362,10 +359,10 @@ public class CrossfadeDrawerLayout extends DrawerLayout {
         float percentage = calculatePercentage(width);
         float alpha = percentage / 100;
 
-        UIUtils.setAlpha(mSmallView, 1);
+        mSmallView.setAlpha(1);
         mSmallView.setClickable(false);
         mLargeView.bringToFront();
-        UIUtils.setAlpha(mLargeView, alpha);
+        mLargeView.setAlpha(alpha);
         mLargeView.setClickable(true);
         mLargeView.setVisibility(alpha > 0.01f ? View.VISIBLE : View.GONE);
 
