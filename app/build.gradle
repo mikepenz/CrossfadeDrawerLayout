@@ -10,10 +10,10 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
-        minSdkVersion 10
-        targetSdkVersion 23
-        versionCode 34
-        versionName '0.3.4'
+        minSdkVersion 14
+        targetSdkVersion 24
+        versionCode 100
+        versionName '1.0.0'
 
         applicationVariants.all { variant ->
             variant.outputs.each { output ->
@@ -52,13 +52,13 @@ dependencies {
 
     // used to provide the fast, flexible, and easy to use DrawerLayout which follows the Material Design Guidelines
     // https://github.com/mikepenz/MaterialDrawer
-    compile('com.mikepenz:materialdrawer:5.1.8@aar') {
+    compile('com.mikepenz:materialdrawer:5.5.0@aar') {
         transitive = true
     }
 
     // used to generate the Open Source section
     // https://github.com/mikepenz/AboutLibraries
-    compile('com.mikepenz:aboutlibraries:5.6.3@aar') {
+    compile('com.mikepenz:aboutlibraries:5.8.0@aar') {
         transitive = true
         exclude module: "fastadapter"
     }

@@ -1,7 +1,6 @@
 package com.mikepenz.crossfadedrawerlayout.view;
 
 import android.content.Context;
-import android.os.Build;
 import android.support.v4.view.ViewCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.util.AttributeSet;
@@ -134,14 +133,12 @@ public class CrossfadeDrawerLayout extends DrawerLayout {
             mSmallView = new LinearLayout(getContext());
             mContainer.addView(mSmallView, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
 
-            UIUtils.setAlpha(mLargeView, 0);
+            mLargeView.setAlpha(0);
             mLargeView.setVisibility(View.GONE);
 
             //correct fitsSystemWindows handling
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
-                mContainer.setFitsSystemWindows(true);
-                mSmallView.setFitsSystemWindows(true);
-            }
+            mContainer.setFitsSystemWindows(true);
+            mSmallView.setFitsSystemWindows(true);
 
             return mContainer;
         }
@@ -166,9 +163,10 @@ public class CrossfadeDrawerLayout extends DrawerLayout {
             drawerView.setLayoutParams(lp);
 
             //revert alpha :D
-            UIUtils.setAlpha(mSmallView, 1);
+            mSmallView.setAlpha(1);
             mSmallView.bringToFront();
-            UIUtils.setAlpha(mLargeView, 0);
+            mLargeView.setAlpha(0);
+            mDrawerOpened = false;
         }
 
         @Override
@@ -271,6 +269,46 @@ public class CrossfadeDrawerLayout extends DrawerLayout {
         super.openDrawer(drawerView);
     }
 
+    @Override
+    public void openDrawer(View drawerView, boolean animate) {
+        mDrawerOpened = true;
+        super.openDrawer(drawerView, animate);
+    }
+
+    @Override
+    public void openDrawer(int gravity, boolean animate) {
+        mDrawerOpened = true;
+        super.openDrawer(gravity, animate);
+    }
+
+    @Override
+    public void closeDrawer(View drawerView) {
+        mDrawerOpened = false;
+        mContainer.clearAnimation();
+        super.closeDrawer(drawerView);
+    }
+
+    @Override
+    public void closeDrawer(View drawerView, boolean animate) {
+        mDrawerOpened = false;
+        mContainer.clearAnimation();
+        super.closeDrawer(drawerView, animate);
+    }
+
+    @Override
+    public void closeDrawer(int gravity) {
+        mDrawerOpened = false;
+        mContainer.clearAnimation();
+        super.closeDrawer(gravity);
+    }
+
+    @Override
+    public void closeDrawer(int gravity, boolean animate) {
+        mDrawerOpened = false;
+        mContainer.clearAnimation();
+        super.closeDrawer(gravity, animate);
+    }
+
     /**
      * crossfade the small to the large view (with default animation time)
      */
@@ -361,10 +399,10 @@ public class CrossfadeDrawerLayout extends DrawerLayout {
         float percentage = calculatePercentage(width);
         float alpha = percentage / 100;
 
-        UIUtils.setAlpha(mSmallView, 1);
+        mSmallView.setAlpha(1);
         mSmallView.setClickable(false);
         mLargeView.bringToFront();
-        UIUtils.setAlpha(mLargeView, alpha);
+        mLargeView.setAlpha(alpha);
         mLargeView.setClickable(true);
         mLargeView.setVisibility(alpha > 0.01f ? View.VISIBLE : View.GONE);
 
