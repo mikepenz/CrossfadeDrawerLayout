@@ -269,6 +269,46 @@ public class CrossfadeDrawerLayout extends DrawerLayout {
         super.openDrawer(drawerView);
     }
 
+    @Override
+    public void openDrawer(View drawerView, boolean animate) {
+        mDrawerOpened = true;
+        super.openDrawer(drawerView, animate);
+    }
+
+    @Override
+    public void openDrawer(int gravity, boolean animate) {
+        mDrawerOpened = true;
+        super.openDrawer(gravity, animate);
+    }
+
+    @Override
+    public void closeDrawer(View drawerView) {
+        mDrawerOpened = false;
+        mContainer.clearAnimation();
+        super.closeDrawer(drawerView);
+    }
+
+    @Override
+    public void closeDrawer(View drawerView, boolean animate) {
+        mDrawerOpened = false;
+        mContainer.clearAnimation();
+        super.closeDrawer(drawerView, animate);
+    }
+
+    @Override
+    public void closeDrawer(int gravity) {
+        mDrawerOpened = false;
+        mContainer.clearAnimation();
+        super.closeDrawer(gravity);
+    }
+
+    @Override
+    public void closeDrawer(int gravity, boolean animate) {
+        mDrawerOpened = false;
+        mContainer.clearAnimation();
+        super.closeDrawer(gravity, animate);
+    }
+
     /**
      * crossfade the small to the large view (with default animation time)
      */
