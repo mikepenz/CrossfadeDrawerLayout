@@ -7,7 +7,7 @@ android {
 
     defaultConfig {
         minSdkVersion 14
-        targetSdkVersion 24
+        targetSdkVersion 27
         versionCode 100
         versionName '1.0.0'
     }
@@ -28,11 +28,11 @@ apply from: 'gradle-mvn-push.gradle'
 apply from: 'gradle-jcenter-push.gradle'
 
 dependencies {
-    compile "com.android.support:appcompat-v7:${rootProject.ext.supportLibVersion}"
+    implementation "com.android.support:appcompat-v7:${rootProject.ext.supportLibVersion}"
 
     // used because it comes with a ScrimInsetsRelativeLayout we need here
     // contains util classes to support various android versions, and clean up code
     // comes with the awesome "Holder"-Pattern
     // https://github.com/mikepenz/Materialize
-    compile 'com.mikepenz:materialize:1.0.0@aar'
+    implementation 'com.mikepenz:materialize:1.1.1@aar'
 }
