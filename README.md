@@ -13,7 +13,7 @@ functions, he can drag in the `MiniDrawer` and resize it to a normal `Drawer`.
 # Include in your project
 ## Using Maven
 ```javascript
-implementation "com.mikepenz:crossfadedrawerlayout:1.0.0@aar"
+implementation "com.mikepenz:crossfadedrawerlayout:1.0.1@aar"
 implementation 'com.mikepenz:materialize:${latestVersion}@aar'
 implementation "com.android.support:appcompat-v7:${supportLibVersion}"
 ```
@@ -90,7 +90,7 @@ miniResult.withCrossFader(new ICrossfader() {
 
 # License
 
-    Copyright 2016 Mike Penz
+    Copyright 2017 Mike Penz
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
