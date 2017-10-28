@@ -11,17 +11,9 @@ android {
 
     defaultConfig {
         minSdkVersion 14
-        targetSdkVersion 24
-        versionCode 100
-        versionName '1.0.0'
-
-        applicationVariants.all { variant ->
-            variant.outputs.each { output ->
-                def file = output.outputFile
-                def fileName = file.name.replace(".apk", "-v" + versionName + "-c" + versionCode + ".apk")
-                output.outputFile = new File(file.parentFile, fileName)
-            }
-        }
+        targetSdkVersion 27
+        versionCode 101
+        versionName '1.0.1'
     }
     buildTypes {
         debug {
@@ -48,25 +40,38 @@ android {
 }
 
 dependencies {
-    compile project(':library')
+    implementation project(':library')
+
+    implementation "com.android.support:appcompat-v7:${rootProject.ext.supportLibVersion}"
+    implementation "com.android.support:recyclerview-v7:${rootProject.ext.supportLibVersion}"
+    implementation "com.android.support:cardview-v7:${rootProject.ext.supportLibVersion}"
+
+    // used because it comes with a ScrimInsetsRelativeLayout we need here
+    // contains util classes to support various android versions, and clean up code
+    // comes with the awesome "Holder"-Pattern
+    // https://github.com/mikepenz/Materialize
+    implementation 'com.mikepenz:materialize:1.1.1@aar'
 
     // used to provide the fast, flexible, and easy to use DrawerLayout which follows the Material Design Guidelines
     // https://github.com/mikepenz/MaterialDrawer
-    compile('com.mikepenz:materialdrawer:5.5.0@aar') {
+    compile('com.mikepenz:materialdrawer:5.9.5@aar') {
+        exclude group: "com.android.support"
+        exclude module: "materialize"
         transitive = true
     }
 
     // used to generate the Open Source section
     // https://github.com/mikepenz/AboutLibraries
-    compile('com.mikepenz:aboutlibraries:5.8.0@aar') {
+    compile('com.mikepenz:aboutlibraries:5.9.8@aar') {
         transitive = true
         exclude module: "fastadapter"
+        exclude module: "materialize"
     }
 
     // icon fonts used inside the sample
     // https://github.com/mikepenz/Android-Iconics
     compile 'com.mikepenz:material-design-iconic-typeface:2.2.0.1@aar'
-    compile 'com.mikepenz:fontawesome-typeface:4.4.0.1@aar'
+    compile 'com.mikepenz:fontawesome-typeface:4.7.0.0@aar'
 
     // used to showcase how to load images
     compile 'com.squareup.picasso:picasso:2.5.2'
