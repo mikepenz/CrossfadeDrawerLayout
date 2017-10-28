@@ -40,11 +40,17 @@ android {
 }
 
 dependencies {
-    compile project(':library')
+    implementation project(':library')
 
     implementation "com.android.support:appcompat-v7:${rootProject.ext.supportLibVersion}"
     implementation "com.android.support:recyclerview-v7:${rootProject.ext.supportLibVersion}"
     implementation "com.android.support:cardview-v7:${rootProject.ext.supportLibVersion}"
+    
+    // used because it comes with a ScrimInsetsRelativeLayout we need here
+    // contains util classes to support various android versions, and clean up code
+    // comes with the awesome "Holder"-Pattern
+    // https://github.com/mikepenz/Materialize
+    implementation 'com.mikepenz:materialize:1.1.1@aar'
 
     // used to provide the fast, flexible, and easy to use DrawerLayout which follows the Material Design Guidelines
     // https://github.com/mikepenz/MaterialDrawer
