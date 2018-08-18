@@ -13,10 +13,12 @@ functions, he can drag in the `MiniDrawer` and resize it to a normal `Drawer`.
 # Include in your project
 ## Using Maven
 ```javascript
-implementation "com.mikepenz:crossfadedrawerlayout:1.0.1"
+implementation "com.mikepenz:crossfadedrawerlayout:1.1.0-rc01"
 implementation "com.mikepenz:materialize:${latestVersion}"
-implementation "androidx.appcompat:appcompat:${versions.androidX}"
+implementation "androidx.appcompat:appcompat:${androidX}"
 ```
+
+To use appcompat please use a version smaller than 1.1.0-rc01. (See the releases on GitHub)
 
 ## How to use
 
@@ -29,18 +31,18 @@ crossfadeDrawerLayout = new CrossfadeDrawerLayout(this);
 result = new DrawerBuilder()
         .withActivity(this)
         .withToolbar(toolbar)
-//provide the custom crossfadeDrawerLaoyout
+        //provide the custom crossfadeDrawerLaoyout
         .withDrawerLayout(crossfadeDrawerLayout)
         .withHasStableIds(true)
-//define the width to the width of our smaller view
+        //define the width to the width of our smaller view
         .withDrawerWidthDp(72)
-//generate the MiniDrawer which is used for the smaller view
+        //generate the MiniDrawer which is used for the smaller view
         .withGenerateMiniDrawer(true)
-//add some items, those are alo automatically added to the MiniDrawer
+        //add some items, those are alo automatically added to the MiniDrawer
         .addDrawerItems(
                 ...
         )
-//the listener which is called when an item inside the drawer or miniDrawer is clicked
+        //the listener which is called when an item inside the drawer or miniDrawer is clicked
         .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
             @Override
             public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
