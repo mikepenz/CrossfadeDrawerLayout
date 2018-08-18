@@ -1,19 +1,32 @@
 buildscript {
+    ext {
+        release = [
+                versionName: "1.1.0-rc01",
+                versionCode: 1100
+        ]
+
+        setup = [
+                compileSdk: 28,
+                buildTools: "28.0.2",
+                minSdk    : 14,
+                targetSdk : 28
+        ]
+
+        versions = [
+                androidX: '1.0.0-rc01'
+        ]
+    }
+
     repositories {
         google()
         jcenter()
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.0.0'
-        classpath 'com.novoda:bintray-release:0.5.0'
+        classpath 'com.android.tools.build:gradle:3.3.0-alpha06'
+        classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.4'
     }
-}
-
-ext {
-    compileSdkVersion = 27
-    buildToolsVersion = "27.0.0"
-    supportLibVersion = "27.0.0"
 }
 
 allprojects {
