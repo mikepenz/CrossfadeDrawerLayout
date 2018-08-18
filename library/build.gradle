@@ -1,15 +1,16 @@
 apply plugin: 'com.android.library'
-apply plugin: 'com.novoda.bintray-release'
 
 android {
-    compileSdkVersion rootProject.ext.compileSdkVersion
-    buildToolsVersion rootProject.ext.buildToolsVersion
+    compileSdkVersion setup.compileSdk
+    buildToolsVersion setup.buildTools
 
     defaultConfig {
-        minSdkVersion 14
-        targetSdkVersion 27
-        versionCode 101
-        versionName '1.0.1'
+        minSdkVersion setup.minSdk
+        targetSdkVersion setup.targetSdk
+        versionCode release.versionCode
+        versionName release.versionName
+
+        resValue "string", "crossfadedrawerlayout_lib_version", "${versionName}"
     }
     buildTypes {
         release {
@@ -24,15 +25,14 @@ android {
     }
 }
 
-apply from: 'gradle-mvn-push.gradle'
-apply from: 'gradle-jcenter-push.gradle'
-
 dependencies {
-    implementation "com.android.support:appcompat-v7:${rootProject.ext.supportLibVersion}"
+    implementation "androidx.appcompat:appcompat:${versions.androidX}"
 
     // used because it comes with a ScrimInsetsRelativeLayout we need here
     // contains util classes to support various android versions, and clean up code
     // comes with the awesome "Holder"-Pattern
     // https://github.com/mikepenz/Materialize
-    implementation 'com.mikepenz:materialize:1.1.1@aar'
+    implementation 'com.mikepenz:materialize:1.2.0-rc01'
 }
+
+apply from: '../gradle-release.gradle'
