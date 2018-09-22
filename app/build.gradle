@@ -56,11 +56,11 @@ dependencies {
 
     // used to provide the fast, flexible, and easy to use DrawerLayout which follows the Material Design Guidelines
     // https://github.com/mikepenz/MaterialDrawer
-    implementation "com.mikepenz:materialdrawer:6.1.0-rc01"
+    implementation "com.mikepenz:materialdrawer:6.1.0"
 
     // used to generate the Open Source section
     // https://github.com/mikepenz/AboutLibraries
-    implementation "com.mikepenz:aboutlibraries:6.2.0-rc01"
+    implementation "com.mikepenz:aboutlibraries:6.2.0"
 
     // icon fonts used inside the sample
     // https://github.com/mikepenz/Android-Iconics
