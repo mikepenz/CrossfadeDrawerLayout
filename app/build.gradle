@@ -52,7 +52,7 @@ dependencies {
     // contains util classes to support various android versions, and clean up code
     // comes with the awesome "Holder"-Pattern
     // https://github.com/mikepenz/Materialize
-    implementation 'com.mikepenz:materialize:1.2.0-rc01'
+    implementation 'com.mikepenz:materialize:1.2.0'
 
     // used to provide the fast, flexible, and easy to use DrawerLayout which follows the Material Design Guidelines
     // https://github.com/mikepenz/MaterialDrawer
